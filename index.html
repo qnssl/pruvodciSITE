@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Průvodcovská agentura</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            html {
+                scroll-behavior: smooth; 
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="header">
+            <h1>Průvodcovská agentura - ZLATÁ HODINA</h1>
+            <p>Vaše brána do dobrodružství</p>
+        </header>
+        
+        <nav class="nav">
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="burger">&#9776;</label>
+
+            <ul class="menu">
+                <li><a href="index.html">Domů</a></li>
+                <li><a href="podpora.html">Podpora</a></li>
+                <li><a href="sluzby.html">Všechny služby</a></li>
+            </ul>
+
+            <div class="mobile-menu">
+                <a href="index.html">Domů</a>
+            <a href="podpora.html">Podpora</a>
+            <a href="sluzby.html">Všechny služby</a>
+            </div>
+        </nav>
+
+        <div class="fixed-logo">
+            <img src="obrazky/logo.png" alt="Logo">
+        </div>
+
+        <main class="container">
+            <section class="intro">
+                <h2>Vítejte na našich stránkách!</h2>
+                <p>
+                    Jsme profesionální průvodcovská agentura, která nabízí tematické prohlídky,
+                    historické výlety a nezapomenutelné zážitky po celé České republice.
+                </p>
+            </section>
+
+            <section class="tours-container">
+                <h2 class="tours-title">Naše prohlídky</h2>
+
+                <div class="tours">
+                    <div class="tour-card scroll-to-form" data-tour="Historická prohlídka města">
+                        <img src="obrazky/historie.jpeg" alt="">
+                        <h3>Historická prohlídka města</h3>
+                        <p>Cena: 2 000 Kč / 1 osoba</p>
+                    </div>
+
+                    <div class="tour-card scroll-to-form" data-tour="Výlet do přírody">
+                        <img src="obrazky/příroda.jpg" alt="">
+                        <h3>Výlet do přírody</h3>
+                        <p>Cena: 3 100 Kč / 1 osoba</p>
+                    </div>
+
+                    <div class="tour-card scroll-to-form" data-tour="Kulturní exkurze">
+                        <img src="obrazky/kultura.jpg" alt="">
+                        <h3>Kulturní exkurze</h3>
+                        <p>Cena: 2 700 Kč / 1 osoba</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section" id="registration-form">
+                <h2>Registrace na prohlídku</h2>
+
+                <form>
+                    <label>Jméno a příjmení:</label>
+                    <input type="text" required>
+
+                    <label>E-mail:</label>
+                    <input type="email" required>
+
+                    <label>Vyberte prohlídku:</label>
+                    <select id="tour-select" required> 
+                        <option>Historická prohlídka města</option>
+                        <option>Výlet do přírody</option>
+                        <option>Kulturní exkurze</option>
+                    </select>
+
+                    <label>Datum:</label>
+                    <input type="date" required>
+
+                    <button type="submit">Odeslat</button>
+                </form>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="index.html">Domů</a>
+                <a href="podpora.html">Podpora</a>
+                <a href="sluzby.html">Všechny služby</a>
+            </div>
+
+            <div class="footer-contact">
+                <p>📞 Telefon: +420 777 123 456</p>
+                <p>📫 Email: info@pruvodce.cz</p>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tourCards = document.querySelectorAll('.scroll-to-form');
+                const formSection = document.getElementById('registration-form');
+                const tourSelect = document.getElementById('tour-select');
+
+                tourCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const selectedTour = card.getAttribute('data-tour');
+
+                        if (formSection) {
+                            formSection.scrollIntoView({ 
+                                behavior: 'smooth' 
+                            });
+                        }
+
+                        if (tourSelect && selectedTour) {
+                            for (let i = 0; i < tourSelect.options.length; i++) {
+                                if (tourSelect.options[i].text === selectedTour) {
+                                    tourSelect.selectedIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
