@@ -5,6 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Průvodcovská agentura</title>
         <link rel="stylesheet" href="style.css">
+        
+        <style>
+            html {
+                scroll-behavior: smooth; 
+            }
+        </style>
     </head>
 
     <body>
@@ -47,19 +53,19 @@
                 <h2 class="tours-title">Naše prohlídky</h2>
 
                 <div class="tours">
-                    <div class="tour-card">
+                    <div class="tour-card scroll-to-form" data-tour="Historická prohlídka města">
                         <img src="obrazky/historie.jpeg" alt="">
                         <h3>Historická prohlídka města</h3>
                         <p>Cena: 2 000 Kč / 1 osoba</p>
                     </div>
 
-                    <div class="tour-card">
+                    <div class="tour-card scroll-to-form" data-tour="Výlet do přírody">
                         <img src="obrazky/příroda.jpg" alt="">
                         <h3>Výlet do přírody</h3>
                         <p>Cena: 3 100 Kč / 1 osoba</p>
                     </div>
 
-                    <div class="tour-card">
+                    <div class="tour-card scroll-to-form" data-tour="Kulturní exkurze">
                         <img src="obrazky/kultura.jpg" alt="">
                         <h3>Kulturní exkurze</h3>
                         <p>Cena: 2 700 Kč / 1 osoba</p>
@@ -67,7 +73,7 @@
                 </div>
             </section>
 
-            <section class="form-section">
+            <section class="form-section" id="registration-form">
                 <h2>Registrace na prohlídku</h2>
 
                 <form>
@@ -78,7 +84,8 @@
                     <input type="email" required>
 
                     <label>Vyberte prohlídku:</label>
-                    <select required>
+                    <select id="tour-select" required>
+                        <option value="" disabled selected>Vyberte si typ prohlídky</option> 
                         <option>Historická prohlídka města</option>
                         <option>Výlet do přírody</option>
                         <option>Kulturní exkurze</option>
@@ -104,5 +111,37 @@
                 <p>📫 Email: info@pruvodce.cz</p>
             </div>
         </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tourCards = document.querySelectorAll('.scroll-to-form'); 
+                const formSection = document.getElementById('registration-form'); 
+                const tourSelect = document.getElementById('tour-select'); 
+
+                tourCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        // Zjistíme vybranou prohlídku z 'data-tour' atributu
+                        const selectedTour = card.getAttribute('data-tour');
+
+                        // Posuneme se k formuláři
+                        if (formSection) {
+                            formSection.scrollIntoView({ 
+                                behavior: 'smooth' 
+                            });
+                        }
+
+                        // Vybereme příslušnou prohlídku v rolovacím seznamu
+                        if (tourSelect && selectedTour) {
+                            for (let i = 0; i < tourSelect.options.length; i++) {
+                                if (tourSelect.options[i].text === selectedTour) {
+                                    tourSelect.selectedIndex = i;
+                                    break;
+                                }
+                            }
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
 </html>
