@@ -76,11 +76,11 @@
                 <h2>Registrace na prohlídku</h2>
 
                 <form>
-                    <label>Jméno a příjmení:</label>
-                    <input type="text" required>
+                    <label for="jmeno_reg">Jméno a příjmení:</label>
+                    <input type="text" id="jmeno_reg" required>
 
-                    <label>E-mail:</label>
-                    <input type="email" required>
+                    <label for="email_reg">E-mail:</label>
+                    <input type="email" id="email_reg" required>
 
                     <label>Vyberte prohlídku:</label>
                     <select id="tour-select" required> 
@@ -89,8 +89,8 @@
                         <option>Kulturní exkurze</option>
                     </select>
 
-                    <label>Datum:</label>
-                    <input type="date" required>
+                    <label for="datum_reg">Datum:</label>
+                    <input type="date" id="datum_reg" required>
 
                     <button type="submit">Odeslat</button>
                 </form>
@@ -139,4 +139,5 @@
             });
         </script>
     </body>
+
 </html>
